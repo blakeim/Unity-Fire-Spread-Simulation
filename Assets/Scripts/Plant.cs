@@ -189,7 +189,6 @@ public class Plant : MonoBehaviour {
 				if((hit_plant = hit.collider.gameObject.GetComponentInParent<Plant>()) != null){
 					if(hit_plant.GetPlantStatus() == PlantStatus.Healthy){
 						hit_plant.LightPlant();
-							print("Fire spread");
 					}
 				}
 			}
@@ -213,7 +212,7 @@ public class Plant : MonoBehaviour {
 	}
 
 	public void SetWindDirection(float angle){
-		print(this.wind_direction = Quaternion.Euler(0, angle, 0) * wind_direction);
+		this.wind_direction = Quaternion.Euler(0, angle, 0) * wind_direction;
 	}
 
 	public void SetBurnTime(float max_burn_time){
