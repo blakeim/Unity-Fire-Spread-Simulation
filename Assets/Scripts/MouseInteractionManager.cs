@@ -43,19 +43,19 @@ public class MouseInteractionManager : MonoBehaviour {
 
 	void ProcessClickEvent(RaycastHit hit, InteractionMode mode){
 
-		Plant hit_plant;
+		Plant hitPlant;
 
-		if((hit_plant = hit.collider.gameObject.GetComponentInParent<Plant>()) != null){
+		if((hitPlant = hit.collider.gameObject.GetComponentInParent<Plant>()) != null){
 			switch(mode){
 				case InteractionMode.Remove:
-					hit_plant.DestroyPlant();
+					hitPlant.DestroyPlant();
 					break;
 				case InteractionMode.Toggle:
-					if(hit_plant.GetPlantStatus() == PlantStatus.Healthy){
-						hit_plant.LightPlant();
+					if(hitPlant.GetPlantStatus() == PlantStatus.Healthy){
+						hitPlant.LightPlant();
 					}
 					else{
-						hit_plant.ExtinguishPlant();
+						hitPlant.ExtinguishPlant();
 					}
 					break;
 				//I want to detect if whats hit is terrain here, because I don't want players generating plants on top of space or widgets	
@@ -65,7 +65,7 @@ public class MouseInteractionManager : MonoBehaviour {
 				default:
 					break;
 			}
-			if(hit_plant.GetPlantStatus() == PlantStatus.Healthy){
+			if(hitPlant.GetPlantStatus() == PlantStatus.Healthy){
 						
 			}
 		}

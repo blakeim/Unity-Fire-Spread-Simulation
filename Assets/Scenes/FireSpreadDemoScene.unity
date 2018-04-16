@@ -215,7 +215,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 320, y: 0}
+  m_AnchoredPosition: {x: 320, y: 30}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &53922077
@@ -512,7 +512,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1721804529}
-        m_MethodName: set_max_plant_count
+        m_MethodName: set_maxPlantCount
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1111,7 +1111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &456858723
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1128,7 +1128,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 240, y: 45}
+  m_AnchoredPosition: {x: 240, y: 15}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &456858724
@@ -1450,7 +1450,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1721804529}
-        m_MethodName: set_wind_speed
+        m_MethodName: set_windSpeed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2396,7 +2396,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1721804529}
-        m_MethodName: set_spread_frequency
+        m_MethodName: set_spreadFrequency
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3738,7 +3738,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1721804529}
-        m_MethodName: set_max_burn_time
+        m_MethodName: set_maxBurnTime
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4190,9 +4190,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdcece8299cb784bb239e3c98975eb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrow_cube: {fileID: 1946154019}
-  plant_factory: {fileID: 1721804529}
-  rotation_speed: 10
+  arrowCube: {fileID: 0}
+  plantFactory: {fileID: 0}
+  rotationSpeed: 0
 --- !u!224 &1946154025
 RectTransform:
   m_ObjectHideFlags: 0

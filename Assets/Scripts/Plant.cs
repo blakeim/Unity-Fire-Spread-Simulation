@@ -12,18 +12,18 @@ I based it off of a coroutine, it made more sense to
 **************************************/
 public class Plant : MonoBehaviour {
 
-	GameObject plant_body;
-	PlantStatus plant_status;
-	float burn_duration;
-	float wind_velocity;
-	float fire_intensity;
-	Vector3 wind_direction;
+	GameObject plantBody;
+	PlantStatus plantStatus;
+	float burnDuration;
+	float windVelocity;
+	float fireIntensity;
+	Vector3 windDirection;
 
 	// Use this for initialization
 	void Start () {
  		
 		GeneratePlant();
-		plant_status = PlantStatus.Healthy;
+		plantStatus = PlantStatus.Healthy;
 	}
 	
 	// Update is called once per frame
@@ -41,8 +41,8 @@ public class Plant : MonoBehaviour {
 		before the button is pressed */
 
 		BuildPlantBody(false);
-		SetPlantStatus(plant_status);
-		wind_direction = Vector3.forward;
+		SetPlantStatus(plantStatus);
+		windDirection = Vector3.forward;
 		gameObject.SetActive(false);
 	}
 
@@ -69,25 +69,25 @@ public class Plant : MonoBehaviour {
 	public void BuildPlantBody(bool reset){
 
 		RaycastHit hit;
-		Vector3 plant_position;
+		Vector3 plantPosition;
 
 		gameObject.SetActive(true);
 
 		//This will happen only if the plant already exists, and is being reset, which will be most of the time
 		if(!reset){
-			plant_body = GameObject.CreatePrimitive(PrimitiveType.Cube);
-			plant_body.transform.localScale = new Vector3(2f, 4f, 2f);
-			plant_body.layer = 9;
-			plant_body.transform.parent = gameObject.transform;
+			plantBody = GameObject.CreatePrimitive(PrimitiveType.Cube);
+			plantBody.transform.localScale = new Vector3(2f, 4f, 2f);
+			plantBody.layer = 9;
+			plantBody.transform.parent = gameObject.transform;
 		}
 		
 		//I'm honestly just doing this to save some typing, since I use this value twice
-		plant_body.transform.position = plant_position = transform.position;
+		plantBody.transform.position = plantPosition = transform.position;
 		
 		//check for terrain or anything below the plant and drop it to that height, and set the x and y to random values in the play space
-		if(Physics.Raycast(plant_position, Vector3.down, out hit)){
-				plant_body.transform.position = new Vector3(UnityEngine.Random.Range(0,100), 
-							plant_position.y - hit.distance, UnityEngine.Random.Range(0,100));
+		if(Physics.Raycast(plantPosition, Vector3.down, out hit)){
+				plantBody.transform.position = new Vector3(UnityEngine.Random.Range(0,100), 
+							plantPosition.y - hit.distance, UnityEngine.Random.Range(0,100));
 		}
 	}
 
@@ -103,7 +103,7 @@ public class Plant : MonoBehaviour {
 	public void PausePlantSimulation(bool simulation){
 		
 		if(simulation){
-			if(plant_status == PlantStatus.OnFire){
+			if(plantStatus == PlantStatus.OnFire){
 				StartCoroutine("BurnCountdown");
 				StartCoroutine("SpreadFire");
 			}
@@ -115,7 +115,7 @@ public class Plant : MonoBehaviour {
 
 	void SetPlantStatus(PlantStatus status){
 
-		Renderer renderer = plant_body.GetComponent<Renderer>();
+		Renderer renderer = plantBody.GetComponent<Renderer>();
 
 		switch(status){
 			case PlantStatus.Healthy:
@@ -125,9 +125,9 @@ public class Plant : MonoBehaviour {
 				//I was going to stop all coroutines, but I think in the future a "grow" coroutine might be cool, so I'll stop them by name now
 				break;
 			case PlantStatus.OnFire:
-				if(plant_status == PlantStatus.Healthy){
+				if(plantStatus == PlantStatus.Healthy){
 					renderer.material.color = new Color(0.50f, 0.0f, 0.0f);
-					plant_status = PlantStatus.OnFire;
+					plantStatus = PlantStatus.OnFire;
 					StartCoroutine("BurnCountdown");
 					StartCoroutine("SpreadFire");
 				}
@@ -141,34 +141,10 @@ public class Plant : MonoBehaviour {
 		}
 	}
 
-    /*public void SpreadFire(Vector3 wind_direction, float wind_velocity){
-
-		RaycastHit hit;
-		Plant hit_plant;
-
-		if(Physics.Raycast(plant_body.transform.position, wind_direction, out hit, wind_velocity, 1 << 9)){
-			if((hit_plant = hit.collider.gameObject.GetComponentInParent<Plant>()) != null){
-				if(hit_plant.GetPlantStatus() == PlantStatus.Healthy){
-					
-					/*I added this little chance to the spreading of fire, because it was spreading too
-					reliably, so I couldn't tell if it was actually working. Basically as soon as a plant was
-					lit, all plants in a line from it were also lit, and I couldn't tell if it was random chance 
-					or if the spread was working. I mean I could tell because the console logged it, but a player
-					wouldn't be able to tell, so I added this chance that will be tunable, and basically give an 
-					artificial lag to the spread of fires 
-					if(Random.Range(0.0f, 1.0f) > 0.5f){
-						hit_plant.LightPlant();
-						print("Fire spread");
-					}
-				}
-			}
-		}
-	}*/
-
     IEnumerator BurnCountdown()
  	{
-        yield return new WaitForSeconds(UnityEngine.Random.Range(3, burn_duration));
-		plant_status = PlantStatus.Burnt;
+        yield return new WaitForSeconds(UnityEngine.Random.Range(3, burnDuration));
+		plantStatus = PlantStatus.Burnt;
 		SetPlantStatus(PlantStatus.Burnt);
  	}
 
@@ -185,7 +161,7 @@ public class Plant : MonoBehaviour {
 			RaycastHit hit;
 			Plant hit_plant;
 
-			if(Physics.Raycast(plant_body.transform.position, wind_direction, out hit, 3 * wind_velocity, 1 << 9)){
+			if(Physics.Raycast(plantBody.transform.position, windDirection, out hit, 3 * windVelocity, 1 << 9)){
 				if((hit_plant = hit.collider.gameObject.GetComponentInParent<Plant>()) != null){
 					if(hit_plant.GetPlantStatus() == PlantStatus.Healthy){
 						hit_plant.LightPlant();
@@ -196,7 +172,7 @@ public class Plant : MonoBehaviour {
 	}
 
 	public PlantStatus GetPlantStatus(){
-		return plant_status;
+		return plantStatus;
 	}
 
 	public void DestroyPlant(){
@@ -212,18 +188,18 @@ public class Plant : MonoBehaviour {
 	}
 
 	public void SetWindDirection(float angle){
-		this.wind_direction = Quaternion.Euler(0, angle, 0) * wind_direction;
+		this.windDirection = Quaternion.Euler(0, angle, 0) * windDirection;
 	}
 
 	public void SetBurnTime(float max_burn_time){
-		this.burn_duration = max_burn_time;
+		this.burnDuration = max_burn_time;
 	}
 
 	public void SetFireIntensity(float max_burn_time){
-		this.burn_duration = max_burn_time;
+		this.burnDuration = max_burn_time;
 	}
 
 	public void SetWindSpeed(float wind_velocity){
-		this.wind_velocity = wind_velocity;
+		this.windVelocity = wind_velocity;
 	}
 }

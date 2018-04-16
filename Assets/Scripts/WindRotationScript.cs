@@ -18,11 +18,11 @@ giving me the correct angle or the half.
 public class WindRotationScript : MonoBehaviour {
 
 	[SerializeField]
-	GameObject arrow_cube;
+	GameObject arrowCube;
 	[SerializeField]
-	PlantFactory plant_factory;
+	PlantFactory plantFactory;
 	[SerializeField]
-	float rotation_speed;
+	float rotationSpeed;
 	// Use this for initialization
 	void Start () {
 
@@ -37,13 +37,13 @@ public class WindRotationScript : MonoBehaviour {
 
 		/*I want the position of the mouse on the screen, not in world space. I'm not actually sure about this,
 		I've done this with a top down view before but never with this sort of hybrid front on view, but it seems right*/
-		Vector3 mouse_position = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-		Vector3 screen_position = Camera.main.WorldToViewportPoint (transform.position);
-		float angle = Mathf.Atan2(screen_position.x - mouse_position.x, screen_position.y - mouse_position.y) * Mathf.Rad2Deg;
+		Vector3 mousePosition = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+		Vector3 screenPosition = Camera.main.WorldToViewportPoint (transform.position);
+		float angle = Mathf.Atan2(screenPosition.x - mousePosition.x, screenPosition.y - mousePosition.y) * Mathf.Rad2Deg;
 
 		//Euler angle rotation only on y axis. If I've alligned the arrow correctly, this rotation should be accurate
-		arrow_cube.transform.rotation = Quaternion.Euler(0,angle,0);
-		plant_factory.UpdateWindDirection(angle);
+		arrowCube.transform.rotation = Quaternion.Euler(0,angle,0);
+		plantFactory.UpdateWindDirection(angle);
 	}
 
 	void OnMouseDrag(){

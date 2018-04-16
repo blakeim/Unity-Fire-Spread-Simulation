@@ -16,25 +16,25 @@ and it made more sense to pull this out in to its own oversoul type class
 public class FireSpreadGameManager : MonoBehaviour {
 
 	[SerializeField]
-	Slider fire_spread_rate_slider;
+	Slider fireSpreadRateSlider;
 	[SerializeField]
-	Slider wind_speed_slider;
+	Slider windSpeedSlider;
 	[SerializeField]
-	Slider max_burn_time_slider;
+	Slider maxBurnTimeSlider;
 	[SerializeField]
-	Slider plant_count_slider;
+	Slider plantCountSlider;
 	[SerializeField]
-	Text   wind_speed_num;
+	Text   windSpeedNum;
 	[SerializeField]
-	Text   fire_spread_rate_num;
+	Text   fireSpreadRateNum;
 	[SerializeField]
-	Text   max_burn_time_num;
+	Text   maxBurnTimeNum;
 	[SerializeField]
-	Text   plant_count_num;
+	Text   plantCountNum;
 	[SerializeField]
-	Button game_mode_updater;
+	Button gameModeUpdater;
 	[SerializeField]
-	PlantFactory plant_factory;
+	PlantFactory plantFactory;
 
 	InteractionMode mode;
 
@@ -44,10 +44,10 @@ public class FireSpreadGameManager : MonoBehaviour {
 		mode = InteractionMode.Add;
 
 		//Add button listeners
-		wind_speed_slider.onValueChanged.AddListener(delegate {plant_factory.UpdateWindSpeed(wind_speed_slider.value);});
-		fire_spread_rate_slider.onValueChanged.AddListener(delegate {plant_factory.UpdateFireSpreadRate(fire_spread_rate_slider.value);});
-		max_burn_time_slider.onValueChanged.AddListener(delegate {plant_factory.UpdateBurnTime(max_burn_time_slider.value);});
-		game_mode_updater.onClick.AddListener(UpdateGameMode);
+		windSpeedSlider.onValueChanged.AddListener(delegate {plantFactory.UpdateWindSpeed(windSpeedSlider.value);});
+		fireSpreadRateSlider.onValueChanged.AddListener(delegate {plantFactory.UpdateFireSpreadRate(fireSpreadRateSlider.value);});
+		maxBurnTimeSlider.onValueChanged.AddListener(delegate {plantFactory.UpdateBurnTime(maxBurnTimeSlider.value);});
+		gameModeUpdater.onClick.AddListener(UpdateGameMode);
 		//plant_count_slider.onValueChanged.AddListener(delegate {plant_factory.UpdatePlantCount(plant_count_slider.value);});
 
 	}
@@ -55,18 +55,18 @@ public class FireSpreadGameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		wind_speed_num.text = wind_speed_slider.value.ToString("## mph");
-		fire_spread_rate_num.text = fire_spread_rate_slider.value.ToString("##");
-		max_burn_time_num.text = max_burn_time_slider.value.ToString("## secs");
+		windSpeedNum.text = windSpeedSlider.value.ToString("## mph");
+		fireSpreadRateNum.text = fireSpreadRateSlider.value.ToString("##");
+		maxBurnTimeNum.text = maxBurnTimeSlider.value.ToString("## secs");
 		//plant_count_num.text = plant_count_slider.value.ToString("0");
 
 	}
 
 	void UpdateGameMode(){
 
-		InteractionMode mode = game_mode_updater.GetComponent<ModeLabelUpdater>().UpdateLabel();
+		InteractionMode mode = gameModeUpdater.GetComponent<ModeLabelUpdater>().UpdateLabel();
 
-		game_mode_updater.GetComponentInChildren<Text>().text = "Mode: " + mode.ToString();
+		gameModeUpdater.GetComponentInChildren<Text>().text = "Mode: " + mode.ToString();
 		this.mode = mode;
 	}
 

@@ -9,15 +9,15 @@ user can tell what mode the game is in.
 **************************************/
 public class ModeLabelUpdater : MonoBehaviour {
 
-	InteractionMode[] possible_modes = (InteractionMode[])System.Enum.GetValues(typeof(InteractionMode));
-	InteractionMode current_mode;
-	int mode_counter = 0;
+	InteractionMode[] possibleModes = (InteractionMode[])System.Enum.GetValues(typeof(InteractionMode));
+	InteractionMode currentMode;
+	int modeCounter = 0;
 
 	// Use this for initialization
 	void Start () {
 		/*I could have done this in declaration, using explicit values, but here if I want to change the 
 		default I just change the one value for mode counter*/
-		current_mode = possible_modes[mode_counter];
+		currentMode = possibleModes[modeCounter];
 	}
 	
 	// Update is called once per frame
@@ -28,9 +28,9 @@ public class ModeLabelUpdater : MonoBehaviour {
 	public InteractionMode UpdateLabel(){
 
 		//this is nice because it works even if more game modes are added, they just have to be added to the enum
-		mode_counter = (mode_counter + 1) % possible_modes.Length;
-		current_mode = possible_modes[mode_counter];
+		modeCounter = (modeCounter + 1) % possibleModes.Length;
+		currentMode = possibleModes[modeCounter];
 
-		return current_mode;
+		return currentMode;
 	}
 }
