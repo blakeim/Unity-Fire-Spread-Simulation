@@ -134,6 +134,7 @@ public class Plant : MonoBehaviour {
 				break;
 			case PlantStatus.Burnt:
 				renderer.material.color = new Color(0.0f, 0.0f, 0.0f);
+				StopCoroutine("BurnCountdown");
 				StopCoroutine("SpreadFire");
 				break;
 			default:
