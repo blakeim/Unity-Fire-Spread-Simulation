@@ -33,45 +33,7 @@ sysinfo.txt
 *.apk
 *.unitypackage
 Assets/Materials.meta
-Assets/Materials/152038813057588495.mat
-Assets/Materials/152038813057588495.mat.meta
-Assets/Materials/arrowTexture 1.mat
-Assets/Materials/arrowTexture 1.mat.meta
-Assets/Materials/arrowTexture 2.mat
-Assets/Materials/arrowTexture 2.mat.meta
-Assets/Materials/arrowTexture 3.mat
-Assets/Materials/arrowTexture 3.mat.meta
-Assets/Materials/arrowTexture 4.mat
-Assets/Materials/arrowTexture 4.mat.meta
-Assets/Materials/arrowTexture 5.mat
-Assets/Materials/arrowTexture 5.mat.meta
-Assets/Materials/arrowTexture 6.mat
-Assets/Materials/arrowTexture 6.mat.meta
-Assets/Materials/arrowTexture.mat
-Assets/Materials/arrowTexture.mat.meta
-Assets/Materials/Grass.mat
-Assets/Materials/Grass.mat.meta
-Assets/Materials/grassTexture.mat
-Assets/Materials/grassTexture.mat.meta
-Assets/Meshes.meta
-Assets/Meshes/New Terrain.asset
-Assets/Meshes/New Terrain.asset.meta
-Assets/Prefabs.meta
-Assets/Prefabs/GameManager.prefab
-Assets/Prefabs/GameManager.prefab.meta
-Assets/Prefabs/Plant.prefab
-Assets/Prefabs/Plant.prefab.meta
-Assets/Prefabs/PlantFactory.prefab
-Assets/Prefabs/PlantFactory.prefab.meta
-Assets/Scenes.meta
-Assets/Scenes/FireSpreadDemoScene.unity
-Assets/Scenes/FireSpreadDemoScene.unity.meta
-Assets/Scripts.meta
-Assets/Textures.meta
-Assets/Textures/arrowTexture.png
-Assets/Textures/arrowTexture.png.meta
-Assets/Textures/grassTexture.png
-Assets/Textures/grassTexture.png.meta
+
 Packages/manifest.json
 ProjectSettings/AudioManager.asset
 ProjectSettings/ClusterInputManager.asset
@@ -91,3 +53,4 @@ ProjectSettings/TagManager.asset
 ProjectSettings/TimeManager.asset
 ProjectSettings/UnityConnectSettings.asset
 .vscode/settings.json
+*.meta
